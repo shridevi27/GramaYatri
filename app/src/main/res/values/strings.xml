@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">GramaYatri</string>
+    <string name="login">LOGIN</string>
+    <string name="email_hint">Enter Email</string>
+    <string name="password_hint">Enter Password</string>
+</resources>
