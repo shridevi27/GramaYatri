@@ -1,28 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:layout_height="match_parent">
 
-    <Spinner
-        android:id="@+id/placeSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <EditText
-        android:id="@+id/messageInput"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Bus just passed temple"
-        android:layout_marginTop="20dp"/>
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <Button
-        android:id="@+id/submitPingBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SUBMIT PING"
-        android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/routeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Route"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/latestPing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Latest Ping"
+            android:textSize="18sp"
+            android:paddingTop="20dp"/>
+
+        <TextView
+            android:id="@+id/etaText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ETA"
+            android:textSize="18sp"
+            android:paddingTop="20dp"/>
+
+        <EditText
+            android:id="@+id/stopInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Current Stop"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/pingBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BUS JUST PASSED"
+            android:layout_marginTop="20dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

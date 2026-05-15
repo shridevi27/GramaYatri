@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
     implementation("com.google.firebase:firebase-database-ktx:20.3.0")
     implementation(platform("com.google.firebase:firebase-bom:34.13.0"))

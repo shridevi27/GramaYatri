@@ -8,6 +8,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GramaYatri">
+
+        <activity android:name=".ReportActivity"/>
+
         <activity android:name=".RouteDetailsActivity"/>
         <activity android:name=".PingActivity"/>
 
