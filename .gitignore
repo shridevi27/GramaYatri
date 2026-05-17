@@ -12,3 +12,9 @@
 .cxx
 local.properties
 .DS_Store
+
+# APK files
+*.apk
+
+# Firebase
+google-services.json
