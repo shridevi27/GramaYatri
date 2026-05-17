@@ -1,58 +1,50 @@
-# GramaYatri
+ Grama-Yatri 🚍
 
+Grama-Yatri is a community-powered rural bus tracking Android application.
 
+ 📌 Problem Statement
 
-GramaYatri is an Android bus tracking and alert application developed using Kotlin and Firebase.
+Village bus timings are unpredictable. Passengers often miss buses and wait for hours.
 
+Grama-Yatri solves this using real-time passenger updates.
 
+Users can:
+- Select routes
+- Ping bus location
+- View live ETA
+- Report bus issues
+- Receive live alerts
 
-\## Features
+---
 
+ 🚀 Features
 
+✅ User Login & Signup  
+✅ Community Live Bus Ping  
+✅ Route Selection  
+✅ Live ETA Calculation  
+✅ Real-time Firebase Updates  
+✅ Report Bus Problems  
+✅ Shared Transit Timeline  
+✅ Low-data Rural Friendly UI  
 
-\* User Login \& Signup
+---
 
-\* Firebase Authentication
+ 🛠 Technologies Used
 
-\* Live Bus Route Selection
+- Kotlin
+- Android Studio
+- Firebase Realtime Database
+- Firebase Authentication
 
-\* Bus Ping Alerts
+---
 
-\* ETA Tracking
-
-\* Shared Realtime Updates
-
-
-
-\## Tech Stack
-
-
-
-\* Kotlin
-
-\* Android Studio
-
-\* Firebase Authentication
-
-\* Firebase Realtime Database
-
-\* GitHub
-
-
-
-\## Project Links
-
-
-
-GitHub Repository:
-
-https://github.com/shridevi27/GramaYatri
-
-
-
-APK Download:
+ 📲 Download APK
 
 https://github.com/shridevi27/GramaYatri/releases/download/v1.0/app-debug.apk
 
+---
 
+ 🔗 GitHub Repository
 
+https://github.com/shridevi27/GramaYatri
