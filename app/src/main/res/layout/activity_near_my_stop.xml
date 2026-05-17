@@ -9,7 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_header_gradient"
+        android:background="@drawable/bg_button_green"
         android:padding="16dp">
 
         <ImageButton
@@ -23,77 +23,85 @@
             android:contentDescription="Back"/>
 
         <TextView
-            android:id="@+id/routeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Route Name"
+            android:text="📍 Near My Stop"
             android:textColor="@color/textWhite"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
 
-    <!-- Ping Status Banner -->
+    <!-- Stop Selector -->
     <androidx.cardview.widget.CardView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        app:cardCornerRadius="10dp"
-        app:cardElevation="3dp">
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="14dp"
-            android:gravity="center_vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="📡"
-                android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/pingText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Latest Ping: No ping yet"
-                android:textColor="@color/textPrimary"
+                android:text="Select your stop:"
+                android:textColor="@color/textSecondary"
                 android:textSize="13sp"
-                android:layout_marginStart="10dp"/>
+                android:layout_marginBottom="8dp"/>
+
+            <Spinner
+                android:id="@+id/stopSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_card"
+                android:padding="4dp"/>
 
             <Button
-                android:id="@+id/addPingBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:text="Ping!"
-                android:textSize="12sp"
-                android:background="@drawable/bg_button_primary"
+                android:id="@+id/searchBtn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Find Buses"
+                android:background="@drawable/bg_button_green"
                 android:textColor="@color/textWhite"
-                android:paddingStart="14dp"
-                android:paddingEnd="14dp"/>
+                android:textSize="14sp"
+                android:layout_marginTop="12dp"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Timeline RecyclerView -->
+    <!-- Results -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop Timeline &amp; ETA"
+        android:text="Buses at this stop"
         android:textColor="@color/textSecondary"
         android:textSize="12sp"
         android:textStyle="bold"
+        android:textAllCaps="true"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="4dp"/>
 
+    <TextView
+        android:id="@+id/emptyText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select a stop above to find buses"
+        android:textColor="@color/textSecondary"
+        android:padding="24dp"
+        android:layout_gravity="center"
+        android:visibility="visible"/>
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/timelineRecyclerView"
+        android:id="@+id/busRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false"
+        android:visibility="gone"/>
 
 </LinearLayout>

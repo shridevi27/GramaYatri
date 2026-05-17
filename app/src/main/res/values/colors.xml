@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- KSRTC Orange theme -->
+    <color name="colorPrimary">#E65100</color>
+    <color name="colorPrimaryDark">#BF360C</color>
+    <color name="colorPrimaryLight">#FF8A50</color>
+    <color name="colorAccent">#2E7D32</color>
+    <color name="colorAccentLight">#4CAF50</color>
+
+    <!-- Backgrounds -->
+    <color name="bgLight">#FFF8F5</color>
+    <color name="bgCard">#FFFFFF</color>
+    <color name="bgGray">#F5F5F5</color>
+
+    <!-- Text -->
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#757575</color>
+    <color name="textWhite">#FFFFFF</color>
+    <color name="textOrange">#E65100</color>
+    <color name="textGreen">#2E7D32</color>
+
+    <!-- Status colors -->
+    <color name="statusPassed">#9E9E9E</color>
+    <color name="statusHere">#FF6D00</color>
+    <color name="statusArriving">#2E7D32</color>
+    <color name="statusWaiting">#1565C0</color>
+
+    <!-- Divider -->
+    <color name="divider">#E0E0E0</color>
 </resources>

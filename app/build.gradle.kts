@@ -37,9 +37,11 @@ android {
 }
 
 dependencies {
-    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("com.google.android.material:material:1.12.0")
     implementation("com.google.firebase:firebase-auth-ktx:22.3.1")
-    implementation("com.google.firebase:firebase-database-ktx:20.3.0")
+    implementation("com.google.firebase:firebase-database-ktx:21.0.0")
     implementation(platform("com.google.firebase:firebase-bom:34.13.0"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bgLight">
+
+    <!-- Header -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header_gradient"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_media_previous"
+            android:tint="@color/textWhite"
+            android:layout_centerVertical="true"
+            android:contentDescription="Back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🔔 Notifications"
+            android:textColor="@color/textWhite"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <!-- Conductor Unlock Button (always visible) -->
+    <Button
+        android:id="@+id/unlockConductorBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🔑 I am a Conductor"
+        android:layout_gravity="end"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_card"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"/>
+
+    <!-- Conductor Post Panel (hidden by default) -->
+    <androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/conductorPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="gone"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp"
+            android:background="#FFF3E0">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🚌 Conductor — Post Notification"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <Spinner
+                android:id="@+id/notifTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_card"
+                android:layout_marginBottom="8dp"/>
+
+            <Spinner
+                android:id="@+id/notifRouteSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_card"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/notifMessageInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Message (e.g. Route cancelled today)"
+                android:background="@drawable/bg_card"
+                android:padding="10dp"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/postNotifBtn"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:text="Post Notification"
+                android:background="@drawable/bg_button_primary"
+                android:textColor="@color/textWhite"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Notification Feed -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="All Notifications"
+        android:textColor="@color/textSecondary"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/emptyText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No notifications yet"
+        android:textColor="@color/textSecondary"
+        android:gravity="center"
+        android:padding="24dp"
+        android:visibility="visible"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/notifRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp"
+        android:clipToPadding="false"
+        android:visibility="gone"/>
+
+</LinearLayout>

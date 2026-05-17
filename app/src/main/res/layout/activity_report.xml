@@ -1,30 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:background="@color/bgLight">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Report Problem"
-        android:textSize="24sp"
-        android:textStyle="bold"/>
-
-    <EditText
-        android:id="@+id/problemInput"
+    <!-- Header -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Bus not arrived / Late / Full crowd"
-        android:layout_marginTop="20dp"/>
+        android:background="@drawable/bg_header_gradient"
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/submitProblemBtn"
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_media_previous"
+            android:tint="@color/textWhite"
+            android:layout_centerVertical="true"
+            android:contentDescription="Back"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="⚠️ Reports"
+            android:textColor="@color/textWhite"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SUBMIT REPORT"
-        android:layout_marginTop="20dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Form Section -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Submit a Report"
+                    android:textColor="@color/textPrimary"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Problem Type -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Problem Type"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp"/>
+                <Spinner
+                    android:id="@+id/problemTypeSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_card"
+                    android:padding="4dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Route -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Route"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp"/>
+                <Spinner
+                    android:id="@+id/routeSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_card"
+                    android:padding="4dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Stop -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stop"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp"/>
+                <Spinner
+                    android:id="@+id/stopSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_card"
+                    android:padding="4dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Description -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description (optional)"
+                    android:textColor="@color/textSecondary"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="4dp"/>
+                <EditText
+                    android:id="@+id/descriptionInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:hint="Describe the issue..."
+                    android:background="@drawable/bg_card"
+                    android:padding="10dp"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"/>
+
+                <Button
+                    android:id="@+id/submitReportBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:text="Submit Report"
+                    android:background="@drawable/bg_button_primary"
+                    android:textColor="@color/textWhite"
+                    android:textSize="15sp"
+                    android:layout_marginTop="16dp"/>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Public Feed Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Community Reports"
+            android:textColor="@color/textSecondary"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginBottom="4dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/reportRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:clipToPadding="false"/>
+
+        <TextView
+            android:id="@+id/emptyReportText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No reports yet. Be the first!"
+            android:textColor="@color/textSecondary"
+            android:layout_gravity="center"
+            android:padding="20dp"
+            android:visibility="gone"/>
+    </LinearLayout>
 
 </LinearLayout>

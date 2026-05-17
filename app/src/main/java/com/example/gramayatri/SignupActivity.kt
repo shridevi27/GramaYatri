@@ -7,10 +7,11 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class SignupActivity : AppCompatActivity() {
 
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,23 +24,31 @@ class SignupActivity : AppCompatActivity() {
         val registerBtn = findViewById<Button>(R.id.registerBtn)
 
         registerBtn.setOnClickListener {
-
-            val userEmail = email.text.toString()
+            val userEmail = email.text.toString().trim()
             val userPass = password.text.toString()
 
+            if (userEmail.isEmpty() || userPass.isEmpty()) {
+                Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             auth.createUserWithEmailAndPassword(userEmail, userPass)
-                .addOnCompleteListener {
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val uid = auth.currentUser?.uid ?: return@addOnCompleteListener
+                        // Save user profile with role "passenger"
+                        val userProfile = mapOf(
+                            "email" to userEmail,
+                            "role" to "passenger"
+                        )
+                        FirebaseDatabase.getInstance().reference
+                            .child("users").child(uid).setValue(userProfile)
 
-                    if (it.isSuccessful) {
-
-                        Toast.makeText(this, "Registration Success", Toast.LENGTH_SHORT).show()
-
+                        Toast.makeText(this, "✅ Registration Successful!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, DashboardActivity::class.java))
                         finish()
-
                     } else {
-
-                        Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                     }
                 }
         }

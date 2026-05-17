@@ -1,53 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bgLight">
 
-    <LinearLayout
+    <!-- Header -->
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:background="@drawable/bg_header_gradient"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/backBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@android:drawable/ic_media_previous"
+            android:tint="@color/textWhite"
+            android:layout_centerVertical="true"
+            android:contentDescription="Back"/>
 
         <TextView
             android:id="@+id/routeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Route"
-            android:textSize="24sp"
-            android:textStyle="bold"/>
+            android:text="Report a Ping"
+            android:textColor="@color/textWhite"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/latestPing"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Latest Ping"
-            android:textSize="18sp"
-            android:paddingTop="20dp"/>
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/etaText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="ETA"
-            android:textSize="18sp"
-            android:paddingTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📡 Report Bus Location"
+                android:textColor="@color/textPrimary"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
 
-        <EditText
-            android:id="@+id/stopInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Current Stop"
-            android:layout_marginTop="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select the stop where you see the bus right now:"
+                android:textColor="@color/textSecondary"
+                android:textSize="13sp"
+                android:layout_marginBottom="12dp"/>
 
-        <Button
-            android:id="@+id/pingBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="BUS JUST PASSED"
-            android:layout_marginTop="20dp"/>
+            <Spinner
+                android:id="@+id/stopSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_card"
+                android:padding="8dp"/>
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/pingBtn"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="📡 Submit Ping"
+                android:background="@drawable/bg_button_primary"
+                android:textColor="@color/textWhite"
+                android:textSize="15sp"
+                android:layout_marginTop="20dp"/>
 
-</ScrollView>
+            <!-- Latest Ping Info -->
+            <androidx.cardview.widget.CardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current Live Ping"
+                        android:textColor="@color/textSecondary"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textAllCaps="true"/>
+
+                    <TextView
+                        android:id="@+id/latestPing"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No ping reported yet"
+                        android:textColor="@color/textPrimary"
+                        android:textSize="14sp"
+                        android:layout_marginTop="6dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

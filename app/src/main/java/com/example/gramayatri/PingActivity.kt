@@ -3,79 +3,63 @@ package com.example.gramayatri
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class PingActivity : AppCompatActivity() {
-
-    lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ping)
 
+        val routeName = intent.getStringExtra("routeName") ?: "Route"
         val routeTitle = findViewById<TextView>(R.id.routeTitle)
-        val latestPing = findViewById<TextView>(R.id.latestPing)
-        val etaText = findViewById<TextView>(R.id.etaText)
+        routeTitle.text = "Ping: $routeName"
 
-        val stopInput = findViewById<EditText>(R.id.stopInput)
+        findViewById<android.widget.ImageButton>(R.id.backBtn).setOnClickListener { finish() }
+
+        // Populate stop spinner with stops for this specific route
+        val stops = RouteDataHelper.ALL_ROUTES.find { it.first == routeName }?.second ?: listOf()
+        val stopNames = stops.map { it.name }
+        val stopSpinner = findViewById<Spinner>(R.id.stopSpinner)
+        stopSpinner.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, stopNames)
+
+        val latestPingText = findViewById<TextView>(R.id.latestPing)
         val pingBtn = findViewById<Button>(R.id.pingBtn)
 
-        val routeName = intent.getStringExtra("routeName") ?: "Unknown Route"
-
-        routeTitle.text = routeName
-
-        database = FirebaseDatabase.getInstance().reference
-
+        val database = FirebaseDatabase.getInstance().reference
         val routeRef = database.child("routes").child(routeName)
 
+        // Show current live ping
         routeRef.child("latestPing")
-            .addValueEventListener(object : ValueEventListener {
-
-                override fun onDataChange(snapshot: DataSnapshot) {
-
-                    if (snapshot.exists()) {
-
-                        val stop = snapshot.child("stop").value.toString()
-                        val message = snapshot.child("message").value.toString()
-
-                        latestPing.text =
-                            "Latest Ping:\n$message at $stop"
-
-                        etaText.text =
-                            "ETA:\nBus may arrive next stop in 10-15 mins"
-
-                    } else {
-
-                        latestPing.text =
-                            "No live ping yet"
-
-                        etaText.text =
-                            "Using route schedule timing"
-                    }
+            .addListenerForSingleValueEvent(object : com.google.firebase.database.ValueEventListener {
+                override fun onDataChange(snapshot: com.google.firebase.database.DataSnapshot) {
+                    val ping = if (snapshot.exists()) snapshot.getValue(Ping::class.java) else null
+                    latestPingText.text = ping?.let { "Bus at: ${it.stopName}" } ?: "No ping yet"
                 }
-
-                override fun onCancelled(error: DatabaseError) {
-
-                }
+                override fun onCancelled(error: com.google.firebase.database.DatabaseError) {}
             })
 
         pingBtn.setOnClickListener {
+            val selectedStop = stopSpinner.selectedItem?.toString() ?: return@setOnClickListener
+            val user = FirebaseAuth.getInstance().currentUser
 
-            val stopName = stopInput.text.toString()
+            val ping = Ping(
+                stopName = selectedStop,
+                message = "Bus just passed",
+                timestamp = System.currentTimeMillis(),
+                reportedBy = user?.email ?: "Anonymous",
+                userId = user?.uid ?: ""
+            )
 
-            val pingData = HashMap<String, String>()
-
-            pingData["stop"] = stopName
-            pingData["message"] = "Bus just passed"
-
-            routeRef.child("latestPing")
-                .setValue(pingData)
-
-            Toast.makeText(
-                this,
-                "Ping Uploaded",
-                Toast.LENGTH_SHORT
-            ).show()
+            routeRef.child("latestPing").setValue(ping).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "✅ Ping sent! Thanks for helping.", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Failed to send ping", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }
