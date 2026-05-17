@@ -1,4 +1,4 @@
- Grama-Yatri 🚍
+ GRAMA-YATRI 🚍
 
 Grama-Yatri is a community-powered rural bus tracking Android application.
 
